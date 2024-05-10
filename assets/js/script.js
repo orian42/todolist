@@ -11,7 +11,17 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+    const taskDate = dayjs(taskList[task].taskDueDate);
+    const today = dayjs().format('YYYY-MM-DD');
+    var cardClass
 
+    if (dayjs(taskDate).isBefore(today)) {
+        cardClass = "redWarn";
+    } else if (dayjs(taskDate).isAfter(today)) {
+        cardClass = "pending";
+    } else {cardClass = "yellowWarn";}
+
+    return cardClass;
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -20,17 +30,19 @@ function renderTaskList() {
     todoCol.text('');
 
     for (i=0; i<taskList.length; i++) {
-        todoCol.append('<div class="singleCard">');
+        todoCol.append('<div class="task-card">');
         const cardData = todoCol.children().eq(i);
 
-        cardData.append(`<div>${taskList[i].taskTitle}</div>`);
+        cardData.append(`<div class='task-card-hdr'><h2>${taskList[i].taskTitle}</h2></div>`);
         cardData.append(`<div>${taskList[i].taskDesc}</div>`);
-        cardData.append(`<div>${taskList[i].taskDueDate}</div>`);
+        cardData.append(`<div>${dayjs(taskList[i].taskDueDate).format('M/DD/YYYY')}</div>`);
         cardData.append(`<div><button class="delTaskBtn" assocID=${taskList[i].taskId}>DELETE</button></div>`);
+
+        cardData.addClass(createTaskCard(i));
     }
 
     $( function() {
-        $('.singleCard').draggable();
+        $('.task-card').draggable();
     } );
 }
 
