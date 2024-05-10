@@ -4,7 +4,7 @@ let nextId = JSON.parse(localStorage.getItem("nextId"));
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-
+    return 1;
 }
 
 // Todo: create a function to create a task card
@@ -18,8 +18,10 @@ function renderTaskList() {
 }
 
 // Todo: create a function to handle adding a new task
-function handleAddTask(event){
+function handleAddTask(taskInfo){
+    console.log(taskInfo);
 
+    localStorage.setItem('task', taskInfo);
 }
 
 // Todo: create a function to handle deleting a task
@@ -36,3 +38,42 @@ function handleDrop(event, ui) {
 $(document).ready(function () {
 
 });
+
+
+//modal form code
+$( function() {
+    var form,
+
+    taskID = generateTaskId(),
+    taskTitle = $( "#taskTitle" ),
+    TaskDueDate = $( "#TaskDueDate" ),
+    taskDesc = $( "#taskDesc" ),
+    taskStatus = "notStarted",
+    allFields = $( [] ).add( taskID ).add( taskTitle ).add( TaskDueDate ).add( taskDesc ).add ( taskStatus),
+
+    dialog = $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 420,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Add Task": handleAddTask,
+            Cancel: function() {
+            dialog.dialog( "close" );
+            }
+        },
+        close: function() {
+            form[ 0 ].reset();
+            allFields.removeClass( "ui-state-error" );
+        }
+    });
+
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+        event.preventDefault();
+        handleAddTask();
+    });
+
+    $( "#addTaskBtn" ).button().on( "click", function() {
+        dialog.dialog( "open" );
+    });
+} );
