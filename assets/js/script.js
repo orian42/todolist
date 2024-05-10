@@ -16,6 +16,18 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    const todoCol = $('#todo-cards');
+    todoCol.text('');
+
+    for (i=0; i<taskList.length; i++) {
+        todoCol.append('<div>');
+        const cardData = todoCol.children().eq(i);
+
+        cardData.append(`<div>${taskList[i].taskTitle}</div>`);
+        cardData.append(`<div>${taskList[i].taskDesc}</div>`);
+        cardData.append(`<div>${taskList[i].taskDueDate}</div>`);
+        cardData.append(`<div><button class="delTaskBtn" assocID=${taskList[i].taskId}>DELETE</button></div>`);
+    }
 
 }
 
@@ -24,10 +36,11 @@ function handleAddTask(){
     if (taskList === null) {taskList = []};
 
     const newTaskItem = {
-        taskID: nextId,
+        taskId: nextId,
         taskTitle: $('#taskTitle').val(),
         taskDueDate: $('#taskDueDate').val(),
-        taskDesc: $('#taskDesc').val()
+        taskDesc: $('#taskDesc').val(),
+        taskStatus: "to-do"
     }
 
     taskList.push(newTaskItem);
@@ -38,7 +51,11 @@ function handleAddTask(){
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
-
+    let assocID = Number($(event.target).attr('assocID'));
+    let filteredArray = taskList.filter(obj => obj.taskId !== assocID);
+    localStorage.setItem('tasks', JSON.stringify(filteredArray));
+    taskList = JSON.parse(localStorage.getItem("tasks"));
+    $(event.target).parent().parent().remove();
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
@@ -48,6 +65,10 @@ function handleDrop(event, ui) {
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
+    renderTaskList();
+
+    $('.delTaskBtn').on('click', handleDeleteTask);
+
     $("#addTaskBtn").click(function() {
         $("#dialog-form").dialog({
             modal: true,
@@ -56,6 +77,7 @@ $(document).ready(function () {
                 "Add Task": function() {
                     generateTaskId();
                     handleAddTask();
+                    renderTaskList();
                     $(this).dialog("close");
                 },
                 "Cancel": function() {
