@@ -20,7 +20,7 @@ function renderTaskList() {
     todoCol.text('');
 
     for (i=0; i<taskList.length; i++) {
-        todoCol.append('<div>');
+        todoCol.append('<div class="singleCard">');
         const cardData = todoCol.children().eq(i);
 
         cardData.append(`<div>${taskList[i].taskTitle}</div>`);
@@ -29,6 +29,9 @@ function renderTaskList() {
         cardData.append(`<div><button class="delTaskBtn" assocID=${taskList[i].taskId}>DELETE</button></div>`);
     }
 
+    $( function() {
+        $('.singleCard').draggable();
+    } );
 }
 
 // Todo: create a function to handle adding a new task
