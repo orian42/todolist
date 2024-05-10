@@ -36,7 +36,7 @@ function renderTaskList() {
         cardData.append(`<div class='task-card-hdr'><h2>${taskList[i].taskTitle}</h2></div>`);
         cardData.append(`<div>${taskList[i].taskDesc}</div>`);
         cardData.append(`<div>${dayjs(taskList[i].taskDueDate).format('M/DD/YYYY')}</div>`);
-        cardData.append(`<div><button class="delTaskBtn" assocID=${taskList[i].taskId}>DELETE</button></div>`);
+        cardData.append(`<div><button class="btn btn-danger btn-small delete-item-btn delTaskBtn" assocID=${taskList[i].taskId}>Delete</button></div>`);
 
         cardData.addClass(createTaskCard(i));
     }
@@ -82,7 +82,7 @@ function handleDrop(event, ui) {
 $(document).ready(function () {
     renderTaskList();
 
-    $('.delTaskBtn').on('click', handleDeleteTask);
+    $('#todo-cards').on('click', '.delTaskBtn', handleDeleteTask);
 
     $("#addTaskBtn").click(function() {
         $("#dialog-form").dialog({

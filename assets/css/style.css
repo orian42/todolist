@@ -9,9 +9,11 @@ body {
 
 .task-card {
   margin: 0 auto;
-  width: 375px;
+  width: 275px;
   height: 225px;
   line-height: 40px;
+  margin-bottom: 30px;
+  margin-top: 15px;
 }
 
 .task-card:hover {
@@ -32,34 +34,36 @@ div#users-contain table td, div#users-contain table th { border: 1px solid #eee;
 /* Styles for cars based on due date */
 .redWarn {
   background-color: lightcoral;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .redWarn h2 {
   background-color: red;
   color: white;
   line-height: 60px;
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .yellowWarn {
   background-color: lightgoldenrodyellow;
+  font-size: 16px;
 }
 
 .yellowWarn h2 {
   background-color: goldenrod;
   line-height: 60px;
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .pending {
   background-color: white;
   border: solid grey 1px;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .pending h2 {
   background-color: green;
+  color: white;
   line-height: 60px;
-  font-size: 36px;
+  font-size: 24px;
 }
