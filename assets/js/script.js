@@ -101,4 +101,15 @@ $(document).ready(function () {
             }
         });
     });
+
+    $( function() {
+        $('.droppable').droppable({
+            drop: function( event, ui ) {
+                $( this )
+                .addClass( "ui-state-highlight" );
+            // renderTaskList();   ---------------------commented out for now
+            }
+        });
+        
+    } );
 });

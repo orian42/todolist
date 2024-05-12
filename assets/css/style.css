@@ -14,6 +14,7 @@ body {
   line-height: 40px;
   margin-bottom: 30px;
   margin-top: 15px;
+  z-index: 1000;
 }
 
 .task-card:hover {
@@ -30,6 +31,7 @@ div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%;
 div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
 .ui-dialog .ui-state-error { padding: .3em; }
 .validateTips { border: 1px solid transparent; padding: 0.3em; }
+
 
 /* Styles for cars based on due date */
 .redWarn {
