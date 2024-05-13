@@ -134,9 +134,9 @@ $(document).ready(function () {
             width: 350,
             buttons: {
                 "Save Task": function() {
-                    // generateTaskId();
-                    // handleAddTask();
-                    // renderTaskList();
+                    generateTaskId();
+                    handleAddTask();
+                    renderTaskList();
                     $(this).dialog("close");
                 },
                 "Cancel": function() {
