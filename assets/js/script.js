@@ -133,7 +133,7 @@ $(document).ready(function () {
             modal: true,
             width: 350,
             buttons: {
-                "Add Task": function() {
+                "Save Task": function() {
                     generateTaskId();
                     handleAddTask();
                     renderTaskList();

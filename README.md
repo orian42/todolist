@@ -1,100 +1,29 @@
-# 05 Third-Party APIs: Task Board
+# Task Board
 
-## Your Task
+## Description
 
-Create a simple task board application that allows a team to manage project tasks by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+### User Story
 
-You'll need to use the [Day.js](https://day.js.org/en/) library to work with dates. Be sure to read the documentation carefully and concentrate on using Day.js in the browser.
+This application was built to assist a project manager manage several tasks.  The board shows three columns in which display all tasks entered and the status of the tasks: "to do", "in progress", and "done".  The project manager will be able to create a new task to be displayed on the board.  The project manager will be able to enter a task title, a due date, and a description of the task.  Once saved, the task will immediately appear in the "to do" column of the board.  when the project is started, the project manager can click and drag the task to the "in progress" column and when complete, the project manager can click and drag the task to the "done" column.  Tasks can also be dragged back to any of the previous columns.  The color scheme of the tasks will change depending on their due date: green for future due dates, yellow for tasks due today, and red for tasks that are overdue.  The color scheme of completed tasks will be a subdued grey color scheme.  Tasks can be deleted by clicking the delete button.
 
-## User Story
+### Student Experience
 
-```md
-AS A project team member with multiple tasks to organize
-I WANT a task board 
-SO THAT I can add individual project tasks, manage their state of progress and track overall project progress accordingly
-```
+I'm not going to lie.  This was a challenging task for me.  Working with the different third party API's taught me to rethink the logic with which I have learned to code.  So far, I have known exactly where and what everything is because I put it there.  Now, I am dependant on code built by others.  I can't just copy and paste code and expect it to work in the same way that I can just glue a light switch to the wall and expect that to work.  There is a "hooking up" process where I need to change the variables in the third party API top match my own.  Completing this project was very slow-going at first but got better as I got the hang of it.  To be honest, I hated this challenge (at first) in the same way I hate vegetables: I didn't like it but I know that it was good for me!  I'm feeling much more confident at the end of the project and I am curious how much I will be using this in the future.  I also think this gave me a glimpse of upcoming group projects where I will be in a position where I have to depend on code built by others.  Looking forward to more challenges and expanding my skill-set...
 
-## Acceptance Criteria
+## Installation
 
-```md
-GIVEN a task board to manage a project
-WHEN I open the task board
-THEN the list of project tasks is displayed in columns representing the task progress state (Not Yet Started, In Progress, Completed)
-WHEN I view the task board for the project
-THEN each task is color coded to indicate whether it is nearing the deadline (yellow) or is overdue (red)
-WHEN I click on the button to define a new task
-THEN I can enter the title, description and deadline date for the new task into a modal dialog
-WHEN I click the save button for that task
-THEN the properties for that task are saved in localStorage
-WHEN I drag a task to a different progress column
-THEN the task's progress state is updated accordingly and will stay in the new column after refreshing
-WHEN I click the delete button for a task
-THEN the task is removed from the task board and will not be added back after refreshing
-WHEN I refresh the page
-THEN the saved tasks persist
-```
+N/A
 
-The following animation demonstrates the application functionality:
+## Usage
 
-![A user adds three tasks to the task board and changes the state of two of them to in progress and then completion. The user then deletes the two cards in the done column.](./Assets/05-third-party-apis-homework-demo.gif)
+Anyone with the link to the application (https://orian42.github.io/todolist/) can utilize it.  To use, begin by adding tasks by clicking the "Add Task" button at the top of the page.  Fill out the task details when the modal display appears then click "Save Task" to save the task.  The "Cancel" button can be clicked if the user does not want to keep the task at this point.  All new tasks will appear in the "To Do" column.  Tasks can be clicked and dragged to other columns depending on their status.  Unwanted tasks on the task board can be permanently deleted by clicking on the "Delete" button on the appropriate task card.  Task cards will save to Local storage and will be immediately recalled and displayed properly when the application is opened on the same computer on which the tasks were entered.
 
-## Grading Requirements
+![A display of the Task Board in use](./assets/images/screenshot.png)
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## Credits
 
-This Challenge is graded based on the following criteria:
+No other person aided in the creation of this application; however, some jQuery UI API's were copied and utilized: Draggable, Droppable, and Dialog (Modal Form).  The code for these API's can be found on the jQuery User Interface site at https://jqueryui.com.  Also, research into additional commands was conducted using multiple websites too numerous to name.  However, one that I would like to name specifically was the Xpert Learning Assistant which was an invaluable tool for me in the creation of this application.
 
-### Technical Acceptance Criteria: 40%
+## License
 
-* Satisfies all of the above acceptance criteria plus the following:
-
-  * Uses the Day.js library to work with dates
-
-### Deployment: 32%
-
-* Application deployed at live URL
-
-* Application loads with no errors
-
-* Application GitHub URL submitted
-
-* GitHub repo contains application code
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate
-
-* Application user interface style is clean and polished
-
-* Application resembles the mock-up functionality provided in the Challenge instructions
-
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project
-
-- - -
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Please refer to the LICENSE in the repo.
