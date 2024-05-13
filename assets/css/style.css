@@ -69,3 +69,17 @@ div#users-contain table td, div#users-contain table th { border: 1px solid #eee;
   line-height: 60px;
   font-size: 24px;
 }
+
+.done {
+  background-color: white;
+  color: gray;
+  border: solid grey 1px;
+  font-size: 16px;
+}
+
+.done h2 {
+  background-color: gray;
+  color: black;
+  line-height: 60px;
+  font-size: 24px;
+}

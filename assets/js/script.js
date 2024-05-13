@@ -18,11 +18,17 @@ function createTaskCard(statuslist, task) {
     const taskDate = dayjs(statuslist[task].taskDueDate);
     const today = dayjs().format('YYYY-MM-DD');
     var cardClass
-    //Formatting will depend on whether the task is due today, due in the future, or overdue
-    if (dayjs(taskDate).isBefore(today)) {
+    //Formatting will depend on whether the task is due today, due in the future, overdue, or completed
+    if (statuslist[task].taskStatus === 'done-cards') {
+        //Tasks that are done will have a subdued grayish colorscheme
+        cardClass = "done";
+    } else if (dayjs(taskDate).isBefore(today)) {
+        //overdue tasks will have a reddish color scheme
         cardClass = "redWarn";
     } else if (dayjs(taskDate).isAfter(today)) {
+        //tasks due in the future will have a greenish color scheme
         cardClass = "pending";
+        //tasks due today will have a yellowish color scheme
     } else {cardClass = "yellowWarn";}
 
     return cardClass;
@@ -58,7 +64,7 @@ function renderTaskList() {
             cardData.addClass(createTaskCard(statusList, i));
         }
     }
-    //Three calls of the above inner function
+    //Three calls of the above local function
     renderColumns (todoCol, todoArray);
     renderColumns (progCol, progArray);
     renderColumns (doneCol, doneArray);
@@ -99,8 +105,10 @@ function handleDeleteTask(event){
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
+    //Identify the object in the array that is associated with the card that was dragged
     const currentTask = taskList.find(obj => obj.taskId === currentID);
     if (currentTask) {
+        //Update the appropriate object with the new status
         currentTask.taskStatus = newStatus;
     }
     localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -111,12 +119,17 @@ function handleDrop(event, ui) {
 $(document).ready(function () {
     renderTaskList();
 
+    //delete the task and remove the card
     $('.lane').on('click', '.delTaskBtn', handleDeleteTask);
-    //Custom attribute used here
+
+    //Custom attribute used here - the unique ID of the associated object is passed to a global
+    //variable when the card is dragged
     $('.lane').on('dragstart', '.task-card', function() {currentID = Number($(this).attr('assocID'))});
 
+    //Modal form for entering in new task information
     $("#addTaskBtn").click(function() {
         $("#dialog-form").dialog({
+            //datepicker was automatically added as part of the modal form
             modal: true,
             width: 350,
             buttons: {
@@ -133,14 +146,23 @@ $(document).ready(function () {
         });
     });
 
+    //Lanes are droppable and what occurs after the drop
     $( function() {
         $('.droppable').droppable({
             drop: function( event, ui ) {
                 newStatus = $(this).children().attr('id');
-            handleDrop();
-            renderTaskList();
+                handleDrop();
+                renderTaskList();
             }
         });
+    } );
+    //Does not allow task cards to remain in an undroppable space
+    $( function() {
+        $(':not(".droppable")').droppable({
+            drop: function(event, ui) {
+                renderTaskList();
+            }
+        })
     } );
 
 });
